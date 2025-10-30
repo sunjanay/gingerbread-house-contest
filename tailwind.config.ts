@@ -17,18 +17,15 @@ const config: Config = {
         ],
       },
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-        },
+        // Foster Greatness Brand Colors
+        'fg-navy': '#1a2949',        // Primary Navy Blue
+        'fg-teal': '#0067a2',        // Primary Teal Blue
+        'fg-light-blue': '#ddf3ff',  // Light Blue
+        'fg-orange': '#fa8526',      // Accent Orange
+        'fg-yellow': '#faca2c',      // Accent Yellow
+        'fg-accent-teal': '#00c8b7', // Accent Teal/Blue
+
+        // Holiday colors (keeping for gingerbread theme)
         holiday: {
           red: '#c41e3a',
           green: '#165b33',

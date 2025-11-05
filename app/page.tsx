@@ -314,64 +314,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dual Impact */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              How Your Contribution Creates Community
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how your contribution creates meaningful change for our community
-            </p>
-          </motion.div>
-
-          <div className="max-w-2xl mx-auto">
-            {/* Community Impact Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative bg-gradient-to-br from-fg-teal/5 to-fg-navy/5 rounded-3xl p-8 md:p-10 shadow-xl overflow-hidden border-2 border-fg-teal/20"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-fg-accent-teal/15 rounded-full blur-3xl" />
-
-              <div className="relative z-10">
-                <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-2xl mb-6">
-                  <Heart className="w-8 h-8 text-fg-teal" aria-hidden="true" />
-                </div>
-
-                <h3 className="text-3xl font-bold mb-6 text-fg-navy">Community Impact</h3>
-
-                <ul className="space-y-4">
-                  {communityImpacts.map((item, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
-                      className="flex items-start gap-3"
-                    >
-                      <CheckCircle className="w-6 h-6 text-fg-teal flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span className="text-gray-700 leading-relaxed">{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Transparency Section */}
+      {/* Impact & Transparency Section */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -382,10 +325,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              Where Your Contribution Goes
+              Your Impact & Where It Goes
             </h2>
-            <p className="text-xl text-gray-600">
-              Complete transparency in how every dollar creates impact
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See exactly how your contribution creates meaningful community impact
             </p>
           </motion.div>
 
@@ -456,7 +399,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="bg-white rounded-2xl p-8 border-2 border-gray-100 text-center shadow-lg"
+            className="bg-white rounded-2xl p-8 border-2 border-gray-100 text-center shadow-lg mb-12"
           >
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <span className="text-2xl font-bold text-fg-navy">Total per community member:</span>
@@ -468,6 +411,43 @@ export default function Home() {
               Your contribution creates complete holiday experiences
             </p>
           </motion.div>
+
+          {/* Community Impact Card */}
+          <div className="max-w-2xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="relative bg-gradient-to-br from-fg-teal/5 to-fg-navy/5 rounded-3xl p-8 md:p-10 shadow-xl overflow-hidden border-2 border-fg-teal/20"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-fg-accent-teal/15 rounded-full blur-3xl" />
+
+              <div className="relative z-10">
+                <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-2xl mb-6">
+                  <Heart className="w-8 h-8 text-fg-teal" aria-hidden="true" />
+                </div>
+
+                <h3 className="text-3xl font-bold mb-6 text-fg-navy">Community Impact</h3>
+
+                <ul className="space-y-4">
+                  {communityImpacts.map((item, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
+                      className="flex items-start gap-3"
+                    >
+                      <CheckCircle className="w-6 h-6 text-fg-teal flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      <span className="text-gray-700 leading-relaxed">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

@@ -178,7 +178,7 @@ export default function Home() {
             >
               Create Belonging for{" "}
               <span className="text-fg-teal">
-                90 Community Members
+                100 Community Members
               </span>{" "}
               This Holiday Season
             </motion.h1>
@@ -653,7 +653,7 @@ export default function Home() {
                   transition={{ delay: 0.5, duration: 0.6 }}
                   className="text-lg mb-6 text-gray-600"
                 >
-                  Fund belonging for 1 community member or 90—every contribution matters.
+                  Fund belonging for 1 community member or 100—every contribution matters.
                 </motion.p>
 
                 <motion.div
@@ -772,8 +772,8 @@ export default function Home() {
                     name="tier"
                     required
                     min="1"
-                    max="90"
-                    placeholder="e.g., 1, 5, 10, 90..."
+                    max="100"
+                    placeholder="e.g., 1, 5, 10, 100..."
                     value={formData.tier}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-fg-teal focus:border-fg-teal transition-all outline-none hover:border-gray-300"

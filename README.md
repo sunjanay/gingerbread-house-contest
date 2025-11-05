@@ -6,7 +6,7 @@ A modern landing page for Foster Greatness's virtual Gingerbread House Contest f
 
 - **Date**: December 19, 2025
 - **Time**: 3PM PST
-- **Goal**: 90 participants
+- **Goal**: 100 participants
 - **Format**: Virtual building event with live judging
 
 ## Getting Started
@@ -35,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Get Involved
 
-**$75 creates one complete holiday experience** — fund belonging for 1 community member or 90. Every contribution matters.
+**$75 creates one complete holiday experience** — fund belonging for 1 community member or 100. Every contribution matters.
 
 Contribute at any level. Your investment directly funds gingerbread kits, gift cards, and virtual connection for our community.
 

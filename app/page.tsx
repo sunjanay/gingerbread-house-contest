@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, memo, useMemo } from "react";
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
-import { Heart, Gift, Users, Calendar, Clock, ChevronDown, Sparkles, CheckCircle, TrendingUp, FileText, Award } from "lucide-react";
+import { Heart, Gift, Users, Sparkles, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Script from "next/script";
 import StripeBuyButton from "./components/StripeBuyButton";
@@ -90,13 +90,6 @@ export default function Home() {
     "Combat isolation through community belonging",
     "Create joyful memories and holiday traditions",
     "Build confidence through creative expression"
-  ], []);
-
-  const contributionBenefits = useMemo(() => [
-    { icon: TrendingUp, text: "Direct impact—100% funds the event experience" },
-    { icon: FileText, text: "Transparent breakdown of where your money goes" },
-    { icon: CheckCircle, text: "Impact report showing community outcomes" },
-    { icon: Award, text: "Recognition opportunities for all contribution levels" }
   ], []);
 
   const transparencyCosts = useMemo(() => [
@@ -339,11 +332,11 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="max-w-2xl mx-auto">
             {/* Community Impact Card */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="relative bg-gradient-to-br from-fg-teal/5 to-fg-navy/5 rounded-3xl p-8 md:p-10 shadow-xl overflow-hidden border-2 border-fg-teal/20"
@@ -369,43 +362,6 @@ export default function Home() {
                     >
                       <CheckCircle className="w-6 h-6 text-fg-teal flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span className="text-gray-700 leading-relaxed">{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Your Contribution Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-gray-100 overflow-hidden"
-            >
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-fg-yellow/10 rounded-full blur-3xl" />
-
-              <div className="relative z-10">
-                <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal to-fg-accent-teal rounded-2xl mb-6">
-                  <Sparkles className="w-8 h-8 text-white" aria-hidden="true" />
-                </div>
-
-                <h3 className="text-3xl font-bold mb-6 text-fg-navy">Your Contribution</h3>
-
-                <ul className="space-y-4">
-                  {contributionBenefits.map((item, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
-                      className="flex items-start gap-3"
-                    >
-                      <div className="p-2 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-lg">
-                        <item.icon className="w-5 h-5 text-fg-teal flex-shrink-0" aria-hidden="true" />
-                      </div>
-                      <span className="text-gray-700 leading-relaxed">{item.text}</span>
                     </motion.li>
                   ))}
                 </ul>

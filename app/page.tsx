@@ -363,7 +363,7 @@ export default function Home() {
           </motion.div>
 
           {/* Cost Breakdown Cards */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
             {transparencyCosts.map((item, index) => (
               <motion.div
                 key={index}
@@ -371,7 +371,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: item.delay, duration: 0.6 }}
-                className="relative bg-white rounded-2xl p-8 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
+                className="relative bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
                 whileHover={{ y: -8 }}
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${item.color} mb-4 shadow-sm`}>
@@ -391,26 +391,32 @@ export default function Home() {
                 </p>
               </motion.div>
             ))}
-          </div>
 
-          {/* Total Summary */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="bg-white rounded-2xl p-8 border-2 border-gray-100 text-center shadow-lg mb-12 max-w-5xl mx-auto"
-          >
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <span className="text-2xl font-bold text-fg-navy">Total per community member:</span>
-              <span className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal">
+            {/* Total Summary Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="relative bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-fg-teal to-fg-accent-teal mb-4 shadow-sm">
+                <CheckCircle className="w-6 h-6 text-white" aria-hidden="true" />
+              </div>
+
+              <div className="text-5xl md:text-6xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal">
                 <AnimatedCounter value={60} duration={2.5} />
-              </span>
-            </div>
-            <p className="mt-4 text-lg text-gray-600">
-              Your contribution creates complete holiday experiences
-            </p>
-          </motion.div>
+              </div>
+
+              <p className="text-fg-teal font-bold text-xl mb-3">
+                Total Per Member
+              </p>
+
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Complete holiday experience including kit, gift card, and virtual event
+              </p>
+            </motion.div>
+          </div>
 
           {/* Community Impact Card */}
           <div className="max-w-5xl mx-auto">

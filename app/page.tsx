@@ -140,7 +140,7 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-flex items-center gap-2 bg-fg-light-blue px-4 py-2 rounded-full mb-6"
             >
-              <Heart className="w-4 h-4 text-fg-teal" />
+              <Heart className="w-4 h-4 text-fg-teal" aria-hidden="true" />
               <span className="text-sm font-semibold text-fg-navy">December 19th, 2025 • 3PM PST</span>
             </motion.div>
 
@@ -185,12 +185,13 @@ export default function Home() {
                     sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
+                aria-label="Scroll to sponsorship form to fund a member's holiday experience"
                 className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  delay: 0.9,
-                  duration: 0.8,
+                  delay: 0.3,
+                  duration: 0.6,
                   type: "spring",
                   stiffness: 100,
                   damping: 12
@@ -198,7 +199,7 @@ export default function Home() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Contribute Today
+                Sponsor a Member's Holiday Experience
               </motion.button>
             </motion.div>
           </motion.div>
@@ -235,7 +236,7 @@ export default function Home() {
                 className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
                 <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${item.color} mb-6 shadow-sm`}>
-                  <item.icon className="w-8 h-8 text-white" />
+                  <item.icon className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
 
                 <h3 className="text-2xl font-bold mb-3 text-fg-navy">
@@ -303,7 +304,7 @@ export default function Home() {
           >
             <div className="text-center md:text-left">
               <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl mb-6">
-                <Heart className="w-8 h-8 text-fg-teal" />
+                <Heart className="w-8 h-8 text-fg-teal" aria-hidden="true" />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-fg-navy">Community Member</h3>
               <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-700">
@@ -331,7 +332,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              Your Impact
+              How Your Contribution Creates Community
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               See how your contribution creates meaningful change for our community
@@ -351,7 +352,7 @@ export default function Home() {
 
               <div className="relative z-10">
                 <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-2xl mb-6">
-                  <Heart className="w-8 h-8 text-fg-teal" />
+                  <Heart className="w-8 h-8 text-fg-teal" aria-hidden="true" />
                 </div>
 
                 <h3 className="text-3xl font-bold mb-6 text-fg-navy">Community Impact</h3>
@@ -366,7 +367,7 @@ export default function Home() {
                       transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
                       className="flex items-start gap-3"
                     >
-                      <CheckCircle className="w-6 h-6 text-fg-teal flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-6 h-6 text-fg-teal flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span className="text-gray-700 leading-relaxed">{item}</span>
                     </motion.li>
                   ))}
@@ -386,7 +387,7 @@ export default function Home() {
 
               <div className="relative z-10">
                 <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal to-fg-accent-teal rounded-2xl mb-6">
-                  <Sparkles className="w-8 h-8 text-white" />
+                  <Sparkles className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
 
                 <h3 className="text-3xl font-bold mb-6 text-fg-navy">Your Contribution</h3>
@@ -402,7 +403,7 @@ export default function Home() {
                       className="flex items-start gap-3"
                     >
                       <div className="p-2 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-lg">
-                        <item.icon className="w-5 h-5 text-fg-teal flex-shrink-0" />
+                        <item.icon className="w-5 h-5 text-fg-teal flex-shrink-0" aria-hidden="true" />
                       </div>
                       <span className="text-gray-700 leading-relaxed">{item.text}</span>
                     </motion.li>
@@ -452,7 +453,7 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
               <div className="flex items-center gap-3 mb-3">
                 <div className="inline-flex items-center gap-2 bg-fg-teal px-4 py-2 rounded-full shadow-lg">
-                  <Gift className="w-5 h-5 text-white" />
+                  <Gift className="w-5 h-5 text-white" aria-hidden="true" />
                   <span className="font-bold text-white">What's Included</span>
                 </div>
               </div>
@@ -475,7 +476,7 @@ export default function Home() {
                 whileHover={{ y: -8 }}
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${item.color} mb-4 shadow-sm`}>
-                  <item.icon className="w-6 h-6 text-white" />
+                  <item.icon className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
 
                 <div className="text-5xl md:text-6xl font-bold mb-3 text-fg-navy">
@@ -525,11 +526,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              Get Involved Today
+              Sponsor Community Members Today
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fill out the form below and we'll be in touch within 24 hours to
-              discuss how your contribution creates belonging.
+              Choose your sponsorship amount below to create holiday experiences and build lasting community connections.
             </p>
           </motion.div>
 
@@ -563,7 +563,7 @@ export default function Home() {
                   transition={{ delay: 0.2, duration: 0.6 }}
                   className="inline-flex items-center gap-2 bg-fg-light-blue px-4 py-2 rounded-full mb-6"
                 >
-                  <Sparkles className="w-4 h-4 text-fg-teal" />
+                  <Sparkles className="w-4 h-4 text-fg-teal" aria-hidden="true" />
                   <span className="text-sm font-semibold text-fg-navy">Complete Holiday Experience</span>
                 </motion.div>
 

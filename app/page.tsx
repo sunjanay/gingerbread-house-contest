@@ -122,7 +122,7 @@ export default function Home() {
       <section className="relative bg-white py-20 md:py-28 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -293,7 +293,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="bg-white rounded-3xl p-10 md:p-12 shadow-xl max-w-4xl mx-auto border-2 border-gray-100"
+            className="bg-white rounded-3xl p-10 md:p-12 shadow-xl max-w-5xl mx-auto border-2 border-gray-100"
           >
             <div className="text-center md:text-left">
               <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl mb-6">
@@ -338,7 +338,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 mb-12 max-w-2xl mx-auto h-80"
+            className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 mb-12 max-w-5xl mx-auto h-80"
           >
             <Image
               src="/images/gingerbread-1.jpg"
@@ -363,7 +363,7 @@ export default function Home() {
           </motion.div>
 
           {/* Cost Breakdown Cards */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
             {transparencyCosts.map((item, index) => (
               <motion.div
                 key={index}
@@ -399,7 +399,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="bg-white rounded-2xl p-8 border-2 border-gray-100 text-center shadow-lg mb-12"
+            className="bg-white rounded-2xl p-8 border-2 border-gray-100 text-center shadow-lg mb-12 max-w-5xl mx-auto"
           >
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <span className="text-2xl font-bold text-fg-navy">Total per community member:</span>
@@ -413,7 +413,7 @@ export default function Home() {
           </motion.div>
 
           {/* Community Impact Card */}
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

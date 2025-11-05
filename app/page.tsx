@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, memo, useMemo } from "react";
-import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from "framer-motion";
-import { Heart, Gift, Users, Calendar, Clock, ChevronDown, Sparkles, X, ZoomIn, CheckCircle, TrendingUp, FileText, Award } from "lucide-react";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { Heart, Gift, Users, Calendar, Clock, ChevronDown, Sparkles, CheckCircle, TrendingUp, FileText, Award } from "lucide-react";
 import Image from "next/image";
 import Script from "next/script";
 import StripeBuyButton from "./components/StripeBuyButton";
@@ -48,8 +48,6 @@ const AnimatedCounter = memo(({ value, duration = 2 }: { value: number; duration
 AnimatedCounter.displayName = "AnimatedCounter";
 
 export default function Home() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
   // Memoize static data arrays
   const valuePropositionItems = useMemo(() => [
     {
@@ -287,9 +285,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
-                className="group relative bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer aspect-square"
-                whileHover={{ y: -8, scale: 1.02 }}
-                onClick={() => setSelectedImage(image.src)}
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden aspect-square"
               >
                 <div className="relative overflow-hidden h-full">
                   <Image
@@ -297,12 +293,9 @@ export default function Home() {
                     alt={image.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover"
                     loading={index < 3 ? "eager" : "lazy"}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-fg-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 z-10">
-                    <ZoomIn className="w-8 h-8 text-white" />
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -333,39 +326,6 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-
-        {/* Lightbox Modal */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-              onClick={() => setSelectedImage(null)}
-            >
-              <motion.button
-                className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setSelectedImage(null)}
-              >
-                <X className="w-6 h-6 text-white" />
-              </motion.button>
-
-              <motion.img
-                src={selectedImage}
-                alt="Full size image"
-                className="max-w-full max-h-[90vh] rounded-lg shadow-2xl"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                onClick={(e) => e.stopPropagation()}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </section>
 
       {/* Dual Impact */}

@@ -188,9 +188,14 @@ export default function Home() {
                 damping: 15
               }}
             >
-              <motion.a
-                href="#sponsor"
-                className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90"
+              <motion.button
+                onClick={() => {
+                  const sponsorSection = document.getElementById('sponsor');
+                  if (sponsorSection) {
+                    sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -204,7 +209,7 @@ export default function Home() {
                 whileTap={{ scale: 0.98 }}
               >
                 Contribute Today
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
         </div>

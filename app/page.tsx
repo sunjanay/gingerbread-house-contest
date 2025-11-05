@@ -115,14 +115,6 @@ export default function Home() {
       icon: Sparkles,
       delay: 0.2,
       color: "from-fg-accent-teal to-fg-teal"
-    },
-    {
-      amount: 15,
-      title: "Event & Admin",
-      description: "Virtual platform, prizes, coordination, and follow-up impact reporting",
-      icon: Users,
-      delay: 0.3,
-      color: "from-fg-navy to-fg-teal"
     }
   ], []);
 
@@ -471,7 +463,7 @@ export default function Home() {
           </motion.div>
 
           {/* Cost Breakdown Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
             {transparencyCosts.map((item, index) => (
               <motion.div
                 key={index}
@@ -512,7 +504,7 @@ export default function Home() {
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <span className="text-2xl font-bold text-fg-navy">Total per community member:</span>
               <span className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal">
-                <AnimatedCounter value={75} duration={2.5} />
+                <AnimatedCounter value={60} duration={2.5} />
               </span>
             </div>
             <p className="mt-4 text-lg text-gray-600">
@@ -582,7 +574,7 @@ export default function Home() {
                   transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
                   className="text-6xl lg:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal"
                 >
-                  <AnimatedCounter value={75} />
+                  <AnimatedCounter value={60} />
                 </motion.div>
 
                 <motion.p

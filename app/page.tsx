@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef, memo, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, memo, useMemo } from "react";
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from "framer-motion";
 import { Heart, Gift, Users, Calendar, Clock, ChevronDown, Sparkles, X, ZoomIn, CheckCircle, TrendingUp, FileText, Award } from "lucide-react";
 import Image from "next/image";
+import Script from "next/script";
 
 // Animated Counter Component - Memoized for performance
 const AnimatedCounter = memo(({ value, duration = 2 }: { value: number; duration?: number }) => {
@@ -46,14 +47,6 @@ const AnimatedCounter = memo(({ value, duration = 2 }: { value: number; duration
 AnimatedCounter.displayName = "AnimatedCounter";
 
 export default function Home() {
-  const [formData, setFormData] = useState({
-    name: "",
-    organization: "",
-    email: "",
-    tier: "",
-    message: "",
-  });
-
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Memoize static data arrays
@@ -134,23 +127,13 @@ export default function Home() {
     }
   ], []);
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    // TODO: Add form submission logic
-    alert("Thank you for your interest! We'll be in touch soon.");
-  }, [formData]);
-
-  const handleChange = useCallback((
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  }, []);
-
   return (
     <main className="min-h-screen bg-white">
+      {/* Stripe Buy Button Script */}
+      <Script
+        src="https://js.stripe.com/v3/buy-button.js"
+        strategy="lazyOnload"
+      />
       {/* Hero Section */}
       <section className="relative bg-white py-20 md:py-28 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -670,173 +653,48 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Form */}
+            {/* Stripe Donation Button */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-gray-100"
+              className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-gray-100 flex flex-col items-center justify-center"
             >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="w-full max-w-md space-y-6">
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  className="text-center mb-6"
                 >
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-fg-teal focus:border-fg-teal transition-all outline-none hover:border-gray-300"
-                    placeholder="John Doe"
-                  />
+                  <h3 className="text-2xl font-bold text-fg-navy mb-2">
+                    Make Your Contribution
+                  </h3>
+                  <p className="text-gray-600">
+                    Secure payment powered by Stripe
+                  </p>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="w-full"
                 >
-                  <label
-                    htmlFor="organization"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
+                    publishable-key="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
                   >
-                    Organization *
-                  </label>
-                  <input
-                    type="text"
-                    id="organization"
-                    name="organization"
-                    required
-                    value={formData.organization}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-fg-teal focus:border-fg-teal transition-all outline-none hover:border-gray-300"
-                    placeholder="Your Organization"
-                  />
+                  </stripe-buy-button>
                 </motion.div>
-              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-              >
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-semibold text-gray-700 mb-2"
-                >
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-fg-teal focus:border-fg-teal transition-all outline-none hover:border-gray-300"
-                  placeholder="you@example.com"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                <label
-                  htmlFor="tier"
-                  className="block text-sm font-semibold text-gray-700 mb-2"
-                >
-                  How many community members would you like to sponsor? *
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    id="tier"
-                    name="tier"
-                    required
-                    min="1"
-                    max="100"
-                    placeholder="e.g., 1, 5, 10, 100..."
-                    value={formData.tier}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-fg-teal focus:border-fg-teal transition-all outline-none hover:border-gray-300"
-                  />
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-fg-teal">
-                    × $75
-                  </div>
-                </div>
-                <p className="text-sm text-gray-500 mt-2 flex items-center gap-1">
-                  <Sparkles className="w-4 h-4 text-fg-teal" />
-                  $75 per community member creates a complete holiday experience
+                <p className="text-center text-sm text-gray-500 mt-6">
+                  Questions? Contact us at jordanb@doinggoodworks.com
                 </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-              >
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-semibold text-gray-700 mb-2"
-                >
-                  Additional Information (Optional)
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-fg-teal focus:border-fg-teal transition-all outline-none hover:border-gray-300 resize-none"
-                  placeholder="Tell us more about your organization or any questions you have..."
-                />
-              </motion.div>
-
-              <motion.button
-                type="submit"
-                className="group relative w-full bg-gradient-to-r from-fg-teal to-fg-accent-teal text-white px-8 py-4 rounded-xl font-bold text-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.7, duration: 0.5 }}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Submit Inquiry
-                  <Heart className="w-5 h-5" />
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-fg-accent-teal to-fg-teal"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
-
-              <p className="text-center text-sm text-gray-500">
-                We'll respond within 24 hours • All information is confidential
-              </p>
-            </form>
+              </div>
             </motion.div>
           </div>
         </div>

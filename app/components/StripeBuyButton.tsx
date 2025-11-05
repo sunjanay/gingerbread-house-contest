@@ -17,8 +17,24 @@ export default function StripeBuyButton({ buyButtonId, publishableKey }: StripeB
       stripeBuyButton.setAttribute('publishable-key', publishableKey);
 
       containerRef.current.appendChild(stripeBuyButton);
+
+      // Add custom styles to center and style the Stripe button
+      const style = document.createElement('style');
+      style.textContent = `
+        stripe-buy-button {
+          display: flex !important;
+          justify-content: center !important;
+          width: 100% !important;
+        }
+      `;
+      containerRef.current.appendChild(style);
     }
   }, [buyButtonId, publishableKey]);
 
-  return <div ref={containerRef} className="w-full" />;
+  return (
+    <div
+      ref={containerRef}
+      className="w-full flex justify-center items-center"
+    />
+  );
 }

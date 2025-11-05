@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from "f
 import { Heart, Gift, Users, Calendar, Clock, ChevronDown, Sparkles, X, ZoomIn, CheckCircle, TrendingUp, FileText, Award } from "lucide-react";
 import Image from "next/image";
 import Script from "next/script";
+import StripeBuyButton from "./components/StripeBuyButton";
 
 // Animated Counter Component - Memoized for performance
 const AnimatedCounter = memo(({ value, duration = 2 }: { value: number; duration?: number }) => {
@@ -684,11 +685,10 @@ export default function Home() {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="w-full"
                 >
-                  <stripe-buy-button
-                    buy-button-id="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
-                    publishable-key="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
-                  >
-                  </stripe-buy-button>
+                  <StripeBuyButton
+                    buyButtonId="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
+                    publishableKey="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
+                  />
                 </motion.div>
 
                 <p className="text-center text-sm text-gray-500 mt-6">

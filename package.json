@@ -1,7 +1,7 @@
 {
-  "name": "gingerbread-house-contest",
+  "name": "foster-greatness-landing-template",
   "version": "1.0.0",
-  "description": "Foster Greatness Gingerbread House Contest Landing Page",
+  "description": "Foster Greatness Landing Page Template for Fundraising Campaigns",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

@@ -168,92 +168,127 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
       >
-        Donate $60/Member
+        🎁 Donate $60/Member
       </motion.button>
 
       {/* ============================================
-          HERO SECTION
+          HERO SECTION - Asymmetric Layout
           [CUSTOMIZE] Main headline, description, CTA text, event date
-          [KEEP] Layout structure and animation patterns
-          See STYLE_GUIDE.md for hero section patterns
+          Left-aligned content with featured image on right
           ============================================ */}
-      <section className="relative bg-white py-20 md:py-28 border-b border-gray-100">
+      <section className="relative bg-white py-20 md:py-28 border-b border-gray-100 overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-fg-light-blue/30 rounded-full blur-3xl pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="max-w-5xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Event Date Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-fg-light-blue px-4 py-2 rounded-full mb-6"
-            >
-              <Heart className="w-4 h-4 text-fg-teal" aria-hidden="true" />
-              <span className="text-sm font-semibold text-fg-navy">December 19th, 2025 • 3PM PST</span> {/* [CUSTOMIZE] Event date and time */}
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-fg-navy"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              We need your help to create belonging for our foster youth community members this holiday season.
-            </motion.h1>
-
-            {/* Supporting Description */}
-            <motion.p
-              className="text-lg md:text-xl mb-10 text-gray-600 leading-relaxed max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              By making a donation, you help foster youth have a sense of the holiday spirit. For the second consecutive year, Foster Greatness, is hosting a virtual Gingerbread House Contest to connect our community because not all families are together under one roof. Together, we can create belonging.
-            </motion.p>
-
-            {/* Primary CTA Button */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.7,
-                duration: 1.2,
-                type: "spring",
-                stiffness: 50,
-                damping: 15
-              }}
-            >
-              <motion.button
-                onClick={() => {
-                  const sponsorSection = document.getElementById('sponsor'); // [CUSTOMIZE] Update ID if you rename the sponsor section
-                  if (sponsorSection) {
-                    sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }
-                }}
-                aria-label="Donate to fund member gingerbread kits and virtual event"
-                className="inline-flex items-center gap-2 bg-fg-teal text-white px-12 py-5 rounded-lg font-bold text-xl shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 cursor-pointer"
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Content - Left aligned, takes 7 columns on large screens */}
+            <div className="lg:col-span-7">
+              <motion.div
+                className="max-w-2xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.3,
-                  duration: 0.6,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 12
-                }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.8 }}
               >
-                Donate $60 to Fund 1 Member
-              </motion.button>
+                {/* Event Date Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="inline-flex items-center gap-2 bg-fg-light-blue px-4 py-2 rounded-full mb-6"
+                >
+                  <Heart className="w-4 h-4 text-fg-teal" aria-hidden="true" />
+                  <span className="text-sm font-semibold text-fg-navy">December 19th, 2025 • 3PM PST 🎄</span>
+                </motion.div>
+
+                {/* Main Headline - Left aligned */}
+                <motion.h1
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-fg-navy text-left"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                >
+                  We need your help to create belonging for our foster youth community members this holiday season 🏠
+                </motion.h1>
+
+                {/* Supporting Description - Left aligned */}
+                <motion.p
+                  className="text-lg md:text-xl mb-10 text-gray-600 leading-relaxed text-left"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                >
+                  By making a donation, you help foster youth have a sense of the holiday spirit. For the second consecutive year, Foster Greatness is hosting a virtual Gingerbread House Contest to connect our community because not all families are together under one roof. Together, we can create belonging.
+                </motion.p>
+
+                {/* Primary CTA Button - Left aligned */}
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4 items-start"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 0.7,
+                    duration: 1.2,
+                    type: "spring",
+                    stiffness: 50,
+                    damping: 15
+                  }}
+                >
+                  <motion.button
+                    onClick={() => {
+                      const sponsorSection = document.getElementById('sponsor');
+                      if (sponsorSection) {
+                        sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }}
+                    aria-label="Donate to fund member gingerbread kits and virtual event"
+                    className="inline-flex items-center gap-2 bg-fg-teal text-white px-12 py-5 rounded-lg font-bold text-xl shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 cursor-pointer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Gift className="w-6 h-6" aria-hidden="true" />
+                    Donate $60 to Fund 1 Member
+                  </motion.button>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Featured Image - Right side, takes 5 columns */}
+            <motion.div
+              className="lg:col-span-5 relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/gingerbread-1.jpg"
+                  alt="Decorated gingerbread house with colorful candies and icing"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-fg-navy/20 to-transparent" />
+
+                {/* Playful decorative accent circles */}
+                <motion.div
+                  className="absolute -top-4 -right-4 w-16 h-16 bg-fg-orange rounded-full border-4 border-white shadow-lg flex items-center justify-center text-2xl"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  🎁
+                </motion.div>
+                <motion.div
+                  className="absolute -bottom-4 -left-4 w-20 h-20 bg-fg-teal rounded-full border-4 border-white shadow-lg flex items-center justify-center text-3xl"
+                  animate={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                >
+                  ❄️
+                </motion.div>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -273,7 +308,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              What Your Contribution Provides {/* [CUSTOMIZE] Section heading */}
+              What Your Contribution Provides 🎁 {/* [CUSTOMIZE] Section heading */}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Every contribution creates meaningful connection and holiday joy for community members navigating life with foster care experience. {/* [CUSTOMIZE] Section description */}
@@ -349,7 +384,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              Last Year's Gingerbread House Contest {/* [CUSTOMIZE] Section heading */}
+              Last Year's Gingerbread House Contest 🍪 {/* [CUSTOMIZE] Section heading */}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               See the creativity and connection your contribution creates for our community members. {/* [CUSTOMIZE] Section description */}
@@ -381,25 +416,50 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Testimonial Card - [OPTIONAL] Remove if not applicable */}
+          {/* Enhanced Testimonial Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="bg-white rounded-3xl p-10 md:p-12 shadow-xl max-w-5xl mx-auto border-2 border-gray-100"
+            className="relative bg-gradient-to-br from-fg-light-blue/30 to-white rounded-3xl p-10 md:p-12 shadow-xl max-w-5xl mx-auto border-2 border-fg-teal/20 overflow-hidden"
           >
-            <div className="text-center md:text-left">
-              <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl mb-6">
-                <Heart className="w-8 h-8 text-fg-teal" aria-hidden="true" />
+            {/* Decorative gingerbread house emoji */}
+            <div className="absolute -right-8 -top-8 text-8xl opacity-10 rotate-12 pointer-events-none">
+              🏠
+            </div>
+
+            {/* Quote mark decoration */}
+            <div className="absolute top-8 left-8 text-6xl text-fg-teal/20 font-serif leading-none">&quot;</div>
+
+            <div className="relative z-10">
+              <div className="flex flex-col md:flex-row gap-6 items-start">
+                {/* Profile Badge */}
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-fg-teal to-fg-accent-teal flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                    TR
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 bg-fg-light-blue px-3 py-1 rounded-full mb-4">
+                    <Heart className="w-4 h-4 text-fg-teal" aria-hidden="true" />
+                    <span className="text-xs font-semibold text-fg-navy">From last year&apos;s event</span>
+                  </div>
+
+                  <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-700 italic">
+                    &quot;My son and I had a blast at last year&apos;s Gingerbread house making event! It was so great to connect with others, sharing stories and laughs and being creative together!&quot;
+                  </p>
+
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-bold text-fg-navy">
+                      Taylor Rockhold
+                    </p>
+                    <span className="text-sm text-gray-500">• Community Member</span>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-fg-navy">From last year&apos;s event</h3>
-              <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-700">
-                &quot;My son and I had a blast at last year&apos;s Gingerbread house making event! It was so great to connect with others, sharing stories and laughs and being creative together!&quot;
-              </p>
-              <p className="text-sm text-gray-600">
-                — Taylor Rockhold
-              </p>
             </div>
           </motion.div>
         </div>

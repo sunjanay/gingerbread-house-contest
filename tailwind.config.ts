@@ -13,6 +13,7 @@ const config: Config = {
           'Century Gothic',
           'CenturyGothic',
           'AppleGothic',
+          'Poppins',
           'sans-serif',
         ],
       },

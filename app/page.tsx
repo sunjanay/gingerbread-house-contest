@@ -151,6 +151,27 @@ export default function Home() {
       />
 
       {/* ============================================
+          STICKY DONATE BUTTON
+          Persistent floating button for easy donation access
+          ============================================ */}
+      <motion.button
+        onClick={() => {
+          const sponsorSection = document.getElementById('sponsor');
+          if (sponsorSection) {
+            sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }}
+        className="fixed bottom-6 right-6 bg-fg-teal text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-3xl z-50 font-bold text-base md:text-lg transition-all hover:scale-105"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        Donate $60/Member
+      </motion.button>
+
+      {/* ============================================
           HERO SECTION
           [CUSTOMIZE] Main headline, description, CTA text, event date
           [KEEP] Layout structure and animation patterns
@@ -182,11 +203,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Create Belonging for{" "} {/* [CUSTOMIZE] Main headline - make it compelling and specific */}
-              <span className="text-fg-teal">
-                100 Community Members
-              </span>{" "}
-              This Holiday Season
+              We need your help to create belonging for our foster youth community members this holiday season.
             </motion.h1>
 
             {/* Supporting Description */}
@@ -196,7 +213,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Your contribution will help us bring foster youth together this holiday season to join a Virtual Gingerbread House Contest on December 19th. Thank you for helping our members connect, create, and celebrate together! ☃️ 💫 {/* [CUSTOMIZE] Value proposition - why should people contribute? */}
+              By making a donation, you help foster youth have a sense of the holiday spirit. For the second consecutive year, Foster Greatness, is hosting a virtual Gingerbread House Contest to connect our community because not all families are together under one roof. Together, we can create belonging.
             </motion.p>
 
             {/* Primary CTA Button */}
@@ -216,11 +233,11 @@ export default function Home() {
                 onClick={() => {
                   const sponsorSection = document.getElementById('sponsor'); // [CUSTOMIZE] Update ID if you rename the sponsor section
                   if (sponsorSection) {
-                    sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
                   }
                 }}
-                aria-label="Scroll to sponsorship form to fund a member's holiday experience" {/* [CUSTOMIZE] Descriptive aria-label for accessibility */}
-                className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 cursor-pointer"
+                aria-label="Donate to fund member gingerbread kits and virtual event"
+                className="inline-flex items-center gap-2 bg-fg-teal text-white px-12 py-5 rounded-lg font-bold text-xl shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 cursor-pointer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -233,7 +250,7 @@ export default function Home() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Sponsor a Member's Holiday Experience {/* [CUSTOMIZE] CTA button text - be specific, avoid generic "Learn More" */}
+                Donate $60 to Fund 1 Member
               </motion.button>
             </motion.div>
           </motion.div>
@@ -288,6 +305,30 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          {/* Early Donation CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-center mt-16"
+          >
+            <motion.button
+              onClick={() => {
+                const sponsorSection = document.getElementById('sponsor');
+                if (sponsorSection) {
+                  sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }}
+              className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Ready to Donate? Fund Members Now
+            </motion.button>
+            <p className="text-sm text-gray-600 mt-4">Or continue reading to see last year&apos;s impact</p>
+          </motion.div>
         </div>
       </section>
 
@@ -352,15 +393,12 @@ export default function Home() {
               <div className="inline-flex p-4 bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl mb-6">
                 <Heart className="w-8 h-8 text-fg-teal" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-fg-navy">Community Member</h3> {/* [CUSTOMIZE] Testimonial name/title */}
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-fg-navy">From last year&apos;s event</h3>
               <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-700">
-                &quot;Events like these remind me that I'm not alone. The
-                gingerbread house contest brought so much joy to my December,
-                and connecting with others who understand my journey made it
-                even more special.&quot; {/* [CUSTOMIZE] Testimonial quote */}
+                &quot;My son and I had a blast at last year&apos;s Gingerbread house making event! It was so great to connect with others, sharing stories and laughs and being creative together!&quot;
               </p>
               <p className="text-sm text-gray-600">
-                — Foster Greatness member, Age 24 {/* [CUSTOMIZE] Attribution */}
+                — Taylor Rockhold
               </p>
             </div>
           </motion.div>
@@ -399,8 +437,8 @@ export default function Home() {
             className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 mb-12 max-w-5xl mx-auto h-80"
           >
             <Image
-              src="/images/gingerbread-1.jpg" {/* [CUSTOMIZE] Featured image path */}
-              alt="Example gingerbread house kit - decorated house with colorful candies and icing" {/* [CUSTOMIZE] Alt text */}
+              src="/images/gingerbread-1.jpg"
+              alt="Example gingerbread house kit - decorated house with colorful candies and icing"
               fill
               sizes="(max-width: 768px) 100vw, 672px"
               className="object-cover"
@@ -532,10 +570,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
-              Sponsor Community Members Today {/* [CUSTOMIZE] Section heading */}
+              Make Your Donation
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose your sponsorship amount below to create holiday experiences and build lasting community connections. {/* [CUSTOMIZE] Section description */}
+              $60 funds one complete holiday experience: gingerbread kit, gift card, and virtual event access.
             </p>
           </motion.div>
 
@@ -551,8 +589,8 @@ export default function Home() {
               {/* Featured Image */}
               <div className="relative h-48 lg:h-56 overflow-hidden">
                 <Image
-                  src="/images/actual-gingerbread-kit-image.png" {/* [CUSTOMIZE] Image path */}
-                  alt="Gingerbread house kit with all supplies included" {/* [CUSTOMIZE] Alt text */}
+                  src="/images/actual-gingerbread-kit-image.png"
+                  alt="Gingerbread house kit with all supplies included"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
@@ -634,11 +672,43 @@ export default function Home() {
                   className="text-center mb-6"
                 >
                   <h3 className="text-2xl font-bold text-fg-navy mb-2">
-                    Make Your Contribution {/* [CUSTOMIZE] Heading */}
+                    Make Your Contribution
                   </h3>
                   <p className="text-gray-600">
-                    Secure payment powered by Stripe {/* [CUSTOMIZE] Subheading */}
+                    Suggested donation amounts
                   </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.35, duration: 0.5 }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
+                >
+                  <div className="bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl p-6 border-2 border-fg-teal/30">
+                    <div className="text-center">
+                      <p className="text-3xl font-bold text-fg-teal mb-2">$60</p>
+                      <p className="text-sm text-gray-700 font-semibold mb-1">Fund 1 Member</p>
+                      <p className="text-xs text-gray-600">Complete kit + event</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl p-6 border-2 border-fg-teal/30">
+                    <div className="text-center">
+                      <p className="text-3xl font-bold text-fg-teal mb-2">$300</p>
+                      <p className="text-sm text-gray-700 font-semibold mb-1">Fund 5 Members</p>
+                      <p className="text-xs text-gray-600">Popular choice</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl p-6 border-2 border-fg-teal/30">
+                    <div className="text-center">
+                      <p className="text-3xl font-bold text-fg-teal mb-2">$600</p>
+                      <p className="text-sm text-gray-700 font-semibold mb-1">Fund 10 Members</p>
+                      <p className="text-xs text-gray-600">Highest impact</p>
+                    </div>
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -648,10 +718,10 @@ export default function Home() {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="w-full"
                 >
-                  {/* [CUSTOMIZE] Update Stripe Buy Button ID and Publishable Key in StripeBuyButton component */}
+                  <p className="text-center text-sm text-gray-600 mb-4">Enter your donation amount below:</p>
                   <StripeBuyButton
-                    buyButtonId="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb" {/* [CUSTOMIZE] Your Stripe Buy Button ID */}
-                    publishableKey="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6" {/* [CUSTOMIZE] Your Stripe Publishable Key */}
+                    buyButtonId="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
+                    publishableKey="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
                   />
                 </motion.div>
 

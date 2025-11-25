@@ -156,9 +156,15 @@ export default function Home() {
           ============================================ */}
       <motion.button
         onClick={() => {
+          const stripeWidget = document.querySelector('[id="sponsor"] stripe-buy-button');
           const sponsorSection = document.getElementById('sponsor');
-          if (sponsorSection) {
-            sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const target = stripeWidget || sponsorSection;
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Add offset for better visibility
+            setTimeout(() => {
+              window.scrollBy({ top: -20, behavior: 'smooth' });
+            }, 500);
           }
         }}
         className="fixed bottom-6 right-6 bg-fg-teal text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-3xl z-50 font-bold text-base md:text-lg transition-all hover:scale-105"
@@ -238,7 +244,7 @@ export default function Home() {
                     onClick={() => {
                       const sponsorSection = document.getElementById('sponsor');
                       if (sponsorSection) {
-                        sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
                     aria-label="Donate to fund member gingerbread kits and virtual event"
@@ -353,7 +359,7 @@ export default function Home() {
               onClick={() => {
                 const sponsorSection = document.getElementById('sponsor');
                 if (sponsorSection) {
-                  sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
               className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90"
@@ -391,8 +397,8 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* 3x3 Gallery Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {/* Gallery Grid - 2 images on mobile, 3x3 on desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12">
             {galleryImages.map((image, index) => (
               <motion.div
                 key={index}
@@ -400,14 +406,16 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden aspect-square"
+                className={`relative bg-white rounded-2xl shadow-lg overflow-hidden aspect-square ${
+                  index >= 4 ? 'hidden md:block' : ''
+                }`}
               >
                 <div className="relative overflow-hidden h-full">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover"
                     loading={index < 3 ? "eager" : "lazy"}
                   />
@@ -488,13 +496,13 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Featured Image - [OPTIONAL] Remove if not needed */}
+          {/* Featured Image - Hidden on mobile to reduce scroll */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 mb-12 max-w-5xl mx-auto h-80"
+            className="hidden md:block relative rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 mb-12 max-w-5xl mx-auto h-80"
           >
             <Image
               src="/images/gingerbread-1.jpg"
@@ -518,7 +526,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Cost Breakdown Cards */}
+          {/* Cost Breakdown Cards - Individual items hidden on mobile */}
           <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
             {transparencyCosts.map((item, index) => (
               <motion.div
@@ -527,7 +535,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: item.delay, duration: 0.6 }}
-                className="relative bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
+                className="hidden md:block relative bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
                 whileHover={{ y: -8 }}
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${item.color} mb-4 shadow-sm`}>
@@ -548,13 +556,13 @@ export default function Home() {
               </motion.div>
             ))}
 
-            {/* Total Summary Card */}
+            {/* Total Summary Card - Always visible, full width on mobile */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="relative bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
+              className="col-span-full md:col-span-1 relative bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
             >
               <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-fg-teal to-fg-accent-teal mb-4 shadow-sm">
                 <CheckCircle className="w-6 h-6 text-white" aria-hidden="true" />
@@ -571,11 +579,16 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Complete holiday experience including kit, gift card, and virtual event {/* [CUSTOMIZE] Description */}
               </p>
+
+              {/* Mobile-only breakdown summary */}
+              <p className="md:hidden text-xs text-gray-500 mt-3 pt-3 border-t border-gray-100">
+                $40 kit + $20 gift card = $60 total
+              </p>
             </motion.div>
           </div>
 
-          {/* Community Impact Card */}
-          <div className="max-w-5xl mx-auto">
+          {/* Community Impact Card - Hidden on mobile to reduce scroll */}
+          <div className="hidden md:block max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -646,8 +659,8 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-xl border-2 border-gray-100 lg:sticky lg:top-8"
             >
-              {/* Featured Image */}
-              <div className="relative h-48 lg:h-56 overflow-hidden">
+              {/* Featured Image - Hidden on mobile */}
+              <div className="hidden md:block relative h-48 lg:h-56 overflow-hidden">
                 <Image
                   src="/images/actual-gingerbread-kit-image.png"
                   alt="Gingerbread house kit with all supplies included"

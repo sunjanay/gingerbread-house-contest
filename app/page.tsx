@@ -156,15 +156,10 @@ export default function Home() {
           ============================================ */}
       <motion.button
         onClick={() => {
-          const stripeWidget = document.querySelector('[id="sponsor"] stripe-buy-button');
-          const sponsorSection = document.getElementById('sponsor');
-          const target = stripeWidget || sponsorSection;
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Add offset for better visibility
-            setTimeout(() => {
-              window.scrollBy({ top: -20, behavior: 'smooth' });
-            }, 500);
+          const isMobile = window.innerWidth < 768;
+          const widget = document.getElementById(isMobile ? 'donate-widget-mobile' : 'donate-widget');
+          if (widget) {
+            widget.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }}
         className="fixed bottom-6 right-6 bg-fg-teal text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-3xl z-50 font-bold text-base md:text-lg transition-all hover:scale-105"
@@ -242,9 +237,10 @@ export default function Home() {
                 >
                   <motion.button
                     onClick={() => {
-                      const sponsorSection = document.getElementById('sponsor');
-                      if (sponsorSection) {
-                        sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      const isMobile = window.innerWidth < 768;
+                      const widget = document.getElementById(isMobile ? 'donate-widget-mobile' : 'donate-widget');
+                      if (widget) {
+                        widget.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
                     aria-label="Donate to fund member gingerbread kits and virtual event"
@@ -295,6 +291,27 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* MOBILE-ONLY DONATE SECTION - Shows right after hero on mobile */}
+      <section className="md:hidden py-12 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-xl mx-auto px-4">
+          <div id="donate-widget-mobile" className="text-center mb-6">
+            <h2 className="text-2xl font-bold mb-2 text-fg-navy">
+              Make Your Donation
+            </h2>
+            <p className="text-base text-gray-600">
+              $60 funds one complete holiday experience.
+            </p>
+          </div>
+          <StripeBuyButton
+            buyButtonId="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
+            publishableKey="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
+          />
+          <p className="text-center text-sm text-gray-500 mt-4">
+            Questions? Contact jordanb@doinggoodworks.com
+          </p>
         </div>
       </section>
 
@@ -357,9 +374,10 @@ export default function Home() {
           >
             <motion.button
               onClick={() => {
-                const sponsorSection = document.getElementById('sponsor');
-                if (sponsorSection) {
-                  sponsorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const isMobile = window.innerWidth < 768;
+                const widget = document.getElementById(isMobile ? 'donate-widget-mobile' : 'donate-widget');
+                if (widget) {
+                  widget.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
               className="inline-flex items-center gap-2 bg-fg-teal text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90"
@@ -474,12 +492,9 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          IMPACT & TRANSPARENCY SECTION
-          [CUSTOMIZE] Cost breakdown data (see transparencyCosts above), impact statements, featured image
-          [KEEP] Layout structure and animated counters
-          See STYLE_GUIDE.md for pricing card and impact section patterns
+          IMPACT & TRANSPARENCY SECTION - Hidden on mobile
           ============================================ */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="hidden md:block py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -626,184 +641,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============================================
-          SPONSORSHIP / CTA SECTION
-          [CUSTOMIZE] Section heading, pricing callout image and text, Stripe configuration
-          [KEEP] Two-column layout structure
-          [OPTIONAL] Replace Stripe integration with other payment methods or contact forms
-          See STYLE_GUIDE.md for CTA section patterns
-          ============================================ */}
-      <section id="sponsor" className="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-fg-navy">
+      {/* DONATION SECTION - Desktop only (mobile version is after hero) */}
+      <section id="sponsor" className="hidden md:block py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-xl mx-auto px-4 sm:px-6">
+          <div id="donate-widget" className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 text-fg-navy">
               Make Your Donation
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              $60 funds one complete holiday experience: gingerbread kit, gift card, and virtual event access.
+            <p className="text-lg text-gray-600">
+              $60 funds one complete holiday experience.
             </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            {/* Pricing Callout - [CUSTOMIZE] All content */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-xl border-2 border-gray-100 lg:sticky lg:top-8"
-            >
-              {/* Featured Image - Hidden on mobile */}
-              <div className="hidden md:block relative h-48 lg:h-56 overflow-hidden">
-                <Image
-                  src="/images/actual-gingerbread-kit-image.png"
-                  alt="Gingerbread house kit with all supplies included"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent" />
-              </div>
-
-              <div className="relative z-10 text-center p-8 lg:p-10">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  className="inline-flex items-center gap-2 bg-fg-light-blue px-4 py-2 rounded-full mb-6"
-                >
-                  <Sparkles className="w-4 h-4 text-fg-teal" aria-hidden="true" />
-                  <span className="text-sm font-semibold text-fg-navy">Complete Holiday Experience</span> {/* [CUSTOMIZE] Badge text */}
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
-                  className="text-6xl lg:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal"
-                >
-                  <AnimatedCounter value={60} /> {/* [CUSTOMIZE] Price per participant */}
-                </motion.div>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="text-xl lg:text-2xl mb-6 font-semibold text-fg-navy"
-                >
-                  Creates one complete holiday experience {/* [CUSTOMIZE] Value proposition */}
-                </motion.p>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  className="text-lg mb-6 text-gray-600"
-                >
-                  Fund belonging for 1 community member or 100—every contribution matters. {/* [CUSTOMIZE] Supporting text */}
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6, duration: 0.6 }}
-                  className="bg-white rounded-2xl p-6 border-2 border-gray-100 shadow-md"
-                >
-                  <p className="text-base leading-relaxed text-gray-700">
-                    Contribute at any level. Your investment directly funds gingerbread kits, gift cards, and virtual connection for our community. {/* [CUSTOMIZE] Additional context */}
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Payment Integration - [CUSTOMIZE] Stripe credentials or replace with alternative */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-gray-100 flex flex-col items-center justify-center"
-            >
-              <div className="w-full max-w-md space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="text-center mb-6"
-                >
-                  <h3 className="text-2xl font-bold text-fg-navy mb-2">
-                    Make Your Contribution
-                  </h3>
-                  <p className="text-gray-600">
-                    Suggested donation amounts
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.35, duration: 0.5 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
-                >
-                  <div className="bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl p-6 border-2 border-fg-teal/30">
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-fg-teal mb-2">$60</p>
-                      <p className="text-sm text-gray-700 font-semibold mb-1">Fund 1 Member</p>
-                      <p className="text-xs text-gray-600">Complete kit + event</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl p-6 border-2 border-fg-teal/30">
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-fg-teal mb-2">$300</p>
-                      <p className="text-sm text-gray-700 font-semibold mb-1">Fund 5 Members</p>
-                      <p className="text-xs text-gray-600">Popular choice</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-fg-teal/10 to-fg-navy/10 rounded-xl p-6 border-2 border-fg-teal/30">
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-fg-teal mb-2">$600</p>
-                      <p className="text-sm text-gray-700 font-semibold mb-1">Fund 10 Members</p>
-                      <p className="text-xs text-gray-600">Highest impact</p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="w-full"
-                >
-                  <p className="text-center text-sm text-gray-600 mb-4">Enter your donation amount below:</p>
-                  <StripeBuyButton
-                    buyButtonId="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
-                    publishableKey="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
-                  />
-                </motion.div>
-
-                <p className="text-center text-sm text-gray-500 mt-6">
-                  Questions? Contact us at jordanb@doinggoodworks.com {/* [CUSTOMIZE] Contact email */}
-                </p>
-              </div>
-            </motion.div>
           </div>
+
+          <div className="w-full">
+            <StripeBuyButton
+              buyButtonId="buy_btn_1SQC6QF61ARMru0WlQcx7Fyb"
+              publishableKey="pk_live_51Mz3wTF61ARMru0WN9TAU1BYRJ6f6FUlM1jFnHqnyPBOx0ZmdhGqB4cG8ehRv5KNgtgElhjXRtkEhtW9U7rIbA3f00CUAZUEo6"
+            />
+          </div>
+
+          <p className="text-center text-sm text-gray-500 mt-6">
+            Questions? Contact jordanb@doinggoodworks.com
+          </p>
         </div>
       </section>
     </main>

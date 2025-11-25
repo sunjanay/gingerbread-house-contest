@@ -13,7 +13,6 @@ html {
 }
 
 body {
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', 'Poppins', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
